@@ -27,3 +27,12 @@ def hexStrToInt(hexstr):
 	return val
 # while true
 
+child.sendline("char-read-hnd 0x43")
+# need to change GATT number for nRF51822 that corresponds to temperature (from keil firmware or hardware?)
+child.expect("characteristic value/descriptor: ", timeout=5)
+child.expect("\r\n", timeout=5)
+print("temperature: "),
+print("child.before"),
+print(float(hexToInt(child.before[0:5]))/100)
+
+# time.sleep(10) # probably gonna change this out
