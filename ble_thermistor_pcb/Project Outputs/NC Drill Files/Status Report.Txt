@@ -1,0 +1,16 @@
+Project Outputs Generation Report
+---------------------------------
+Start Output Generation At 6:29:44 AM On 7/1/2018
+
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [BLE_THERMISTOR.PcbDoc]
+   Generated File[BLE_THERMISTOR.TXT]
+   Generated File[BLE_THERMISTOR.LDP]
+   Generated File[BLE_THERMISTOR.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 6:29:44 AM On 7/1/2018

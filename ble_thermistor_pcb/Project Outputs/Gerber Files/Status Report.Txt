@@ -1,0 +1,26 @@
+Project Outputs Generation Report
+---------------------------------
+Start Output Generation At 6:29:44 AM On 7/1/2018
+
+Output: Gerber Files
+Type  : Gerber
+From  : PCB Document [BLE_THERMISTOR.PcbDoc]
+   Generated File[BLE_THERMISTOR.GTO]
+   Generated File[BLE_THERMISTOR.GTP]
+   Generated File[BLE_THERMISTOR.GTS]
+   Generated File[BLE_THERMISTOR.GTL]
+   Generated File[BLE_THERMISTOR.GBL]
+   Generated File[BLE_THERMISTOR.GBS]
+   Generated File[BLE_THERMISTOR.GBP]
+   Generated File[BLE_THERMISTOR.GBO]
+   Generated File[BLE_THERMISTOR.GKO]
+   Generated File[BLE_THERMISTOR.GPT]
+   Generated File[BLE_THERMISTOR.GPB]
+   Generated File[BLE_THERMISTOR.EXTREP]
+   Generated File[BLE_THERMISTOR.REP]
+
+
+Files Generated   : 13
+Documents Printed : 0
+
+Finished Output Generation At 6:29:44 AM On 7/1/2018

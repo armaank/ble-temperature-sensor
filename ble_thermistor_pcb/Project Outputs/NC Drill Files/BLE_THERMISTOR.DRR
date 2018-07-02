@@ -1,0 +1,18 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: BLE_THERMISTOR.PcbDoc   7/1/2018  6:29:44 AM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : BLE_THERMISTOR.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      12mil (0.3mm)                                             Round             9         PTH        0.00inch (0.00mm)
+T2      13mil (0.33mm)                                            Round             16        PTH        0.00inch (0.00mm)
+T3      16mil (0.4mm)                                             Round             22        PTH        0.00inch (0.00mm)
+T4      24mil (0.6mm)                                             Round             2         PTH        0.00inch (0.00mm)
+T5      35mil (0.9mm)                                             Round             8         PTH        0.00inch (0.00mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              57
+
+Total Processing Time (hh:mm:ss) : 00:00:00

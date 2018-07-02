@@ -1,0 +1,15 @@
+Project Outputs Generation Report
+---------------------------------
+Start Output Generation At 6:29:42 AM On 7/1/2018
+
+Output: Generates pick and place files
+Type  : Pick Place
+From  : PCB Document [BLE_THERMISTOR.PcbDoc]
+   Generated File[Pick Place for BLE_THERMISTOR.txt]
+   Generated File[Pick Place for BLE_THERMISTOR.csv]
+
+
+Files Generated   : 2
+Documents Printed : 0
+
+Finished Output Generation At 6:29:42 AM On 7/1/2018

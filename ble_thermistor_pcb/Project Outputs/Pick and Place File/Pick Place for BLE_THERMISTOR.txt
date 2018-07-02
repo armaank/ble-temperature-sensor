@@ -1,0 +1,39 @@
+Altium Designer Pick and Place Locations
+E:\BLE_THERMISTOR\Project Outputs for EMB100\Pick and Place File\Pick Place for BLE_THERMISTOR.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       01/07/18
+Time:       06:29
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mil
+
+Designator Comment                  Layer       Footprint            Center-X(mil) Center-Y(mil) Rotation Description                        
+R1         CRCW040210K0FKEDC        TopLayer    RESC2012X70N         1390.748      1051.181      180      "RES SMD 2K OHM 1% 1/16W 0805"     
+R9         CRCW040210K0FKEDC        TopLayer    RESC2012X70N         465.551       1098.425      270      "RES SMD 10K OHM 1% 1/16W 0402"    
+R12        CRCW04021M00FKED         TopLayer    RESC2012X70N         1020.669      1070.866      360      "RES SMD 1M OHM 1% 1/16W 0402"     
+THERMISTOR M20-9990246              TopLayer    HDR1X2               157.480       1003.937      90       "SIL VERTICAL PC TAIL PIN HEADER"  
+SW1        LY-A03-05A               TopLayer    LY-A03-05A           984.252       141.732       360      "SWITCH TACTILE SPST-NO 0.05A 12V" 
+P5         M20-9990446              TopLayer    HDR1X4               1818.898      992.126       270      "SIL VERTICAL PC TAIL PIN HEADER"  
+P3         M20-9990246              TopLayer    HDR1X2               1540.354      1251.969      360      "SIL VERTICAL PC TAIL PIN HEADER"  
+BT         CR2016                   BottomLayer BLP2016SM-GTR        984.252       1023.622      0        "BATTERY LITHIUM 3V COIN 20MM"     
+C1         GJM1555C1H120GB01D       TopLayer    CAPC2012X135N        662.402       1224.410      0        "CAP CER 12PF 50V C0G/NP0 0402"    
+C2         GJM1555C1H120GB01D       TopLayer    CAPC2012X135N        540.355       1318.898      90       "CAP CER 12PF 50V C0G/NP0 0402"    
+C3         GRM152C80J104ME19D       TopLayer    CAPC2012X135N        818.898       1318.898      180      "CAP CER 0.1UF 6.3V X6S 0402"      
+C4         GCM155R71H102KA37D       TopLayer    CAPC2012X135N        800.197       1422.244      180      "CAP CER 1000PF 50V X7R 0402"      
+C5         GJM1555C1H2R2BB01D       TopLayer    CAPC2012X135N        1004.921      1519.685      180      "CAP CER 2.2PF 50V C0G/NP0 0402"   
+C6         GRM152C80J104ME19D       TopLayer    CAPC2012X135N        804.134       1184.055      180      "CAP CER 0.1UF 6.3V X6S 0402"      
+C7         GRM1555C1H1R0WA01D       TopLayer    CAPC2012X135N        945.866       1618.110      360      "CAP CER 1PF 50V C0G/NP0 0402"     
+C8         GJM1555C1H1R5CB01D       TopLayer    CAPC2012X135N        717.520       1519.685      180      "CAP CER 1.5PF 50V C0G/NP0 0402"   
+C10        GCM155R71C473KA37D       TopLayer    CAPC2012X135N        1272.638      1515.748      0        "CAP CER 0.047UF 16V X7R 0402"     
+C11        GRM155R71E222KA01D       TopLayer    CAPC2012X135N        1276.575      1610.236      0        "CAP CER 2200PF 25V X7R 0402"      
+C12        GRM152C80J104ME19D       TopLayer    CAPC2012X135N        1189.961      1051.181      180      "CAP CER 0.1UF 6.3V X6S 0402"      
+L1         L-07C3N3SV6T             TopLayer    IND0805              875.000       1519.685      180      "FIXED IND 3.3NH 300MA 190 MOHM"   
+L2         L-07C4N7SV6T             TopLayer    IND0805              1134.843      1519.685      180      "FIXED IND 4.7NH 300MA 240 MOHM"   
+L3         L-07C10NJV6T             TopLayer    IND0805              1134.843      1610.236      180      "FIXED IND 10NH 250MA 450 MOHM"    
+LED1       LTST-C191KSKT            TopLayer    LED                  1394.685      1141.732      180      "LED YELLOW CLEAR 0603 SMD"        
+U1         NRF51822-QFAA-T          TopLayer    QFN40P600X600X90-48N 1067.913      1303.150      90       "IC RF TXRX+MCU BLUETOOTH 48VFQFN" 
+X1         NX2520SA-16MHZ-STD-CSW-5 TopLayer    BT-XTAL_2520         662.402       1326.773      180      "CRYSTAL 16.0000MHZ 8PF SMD"       
+R11        CRCW04021M00FKED         TopLayer    RESC2012X70N         1020.669      992.126       180      "RES SMD 1M OHM 1% 1/16W 0402"     
