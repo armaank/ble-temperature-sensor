@@ -3,6 +3,7 @@
 #include "nrf_log.h"
 #include "nrf_delay.h"
 #include "nrf_drv_adc.h"
+#include "math.h"
 
 #include "user_adc.h"
 
@@ -53,7 +54,7 @@ static nrf_drv_adc_channel_t 	m_channel_config = 	{
 															.resolution = NRF_ADC_CONFIG_RES_10BIT,                
 															.input      = NRF_ADC_CONFIG_SCALING_INPUT_ONE_THIRD, 
 															.reference  = NRF_ADC_CONFIG_REF_SUPPLY_ONE_THIRD,	//NRF_ADC_CONFIG_REF_VBG,                  
-															.ain        = THERMISTOR_ADC_CH // analog input
+															.ain        = THERMISTOR_ADC_CH
 															}
 														}, 
 														NULL
@@ -63,18 +64,18 @@ int16_t m_average_adc_val;
 
 static void adc_event_handler(nrf_drv_adc_evt_t const * p_event)
 {	
-    if (p_event->type == NRF_DRV_ADC_EVT_DONE) // last
+    if (p_event->type == NRF_DRV_ADC_EVT_DONE)
     {
         int32_t i; 
-		int32_t sum 		= 0; // initialize sum to zero
-		int32_t buf_size 	= p_event->data.done.size; // used for averaging 
+		int32_t sum 		= 0;
+		int32_t buf_size 	= p_event->data.done.size;
 		
 		if (buf_size == 0) return;
 		
         for (i = 0; i < buf_size; i++) {
 //            NRF_LOG_INFO("Current sample value: %d\r\n", p_event->data.done.p_buffer[i]);		
 			
-			sum += (int32_t)p_event->data.done.p_buffer[i]; // accumulation
+			sum += (int32_t)p_event->data.done.p_buffer[i];
         }
 		m_average_adc_val = (int16_t)(sum / buf_size);
     }
@@ -100,39 +101,41 @@ static int16_t UserADC_GetValue(uint32_t adc_ch)
 	return m_average_adc_val;
 }
 
-int16_t Thermistor_GetValue(void)	// temperature between -40 ~ 200
+int16_t Thermistor_GetValue(void)	//degree = -40 ~ 200
 {
 	int16_t		temperature_val;
-	int16_t 	adc_val 			= UserADC_GetValue(THERMISTOR_ADC_CH); // analog input 2
+	int16_t 	adc_val 			= UserADC_GetValue(THERMISTOR_ADC_CH);
 	
-	if (adc_val < 0) 	adc_val = 0; // boundry/overflow error
-	if (adc_val > 1023) adc_val = 1023; // boundry/overflow error
+	if (adc_val < 0) 	adc_val = 0;
+	if (adc_val > 1023) adc_val = 1023;
 	
-	uint32_t 	temp_resistance 	= adc_val * 10000 / (1024 - adc_val); // formula
+	uint32_t 	temp_resistance 	= adc_val * 10000 / (1024 - adc_val);
+	
 	int 		table_count 		= sizeof(c_thermistor_info_table) / sizeof(THERMISTOR_INFO);
 	int			i;
 	
 	NRF_LOG_INFO("temp_resistance = %d\n", temp_resistance);
-	// boundry checking & error handling (if temp is lt -40 or gt 200 C) 
+	
 	if (temp_resistance < c_thermistor_info_table[table_count - 1].resistance) return c_thermistor_info_table[table_count - 1].temperature;
 	else if (temp_resistance > c_thermistor_info_table[0].resistance) return c_thermistor_info_table[0].temperature;
-	// determines i from table values	
+	
 	for (i = 0; i < table_count - 1; i++) {
 		if (temp_resistance <= c_thermistor_info_table[i].resistance && 
 			temp_resistance >= c_thermistor_info_table[i + 1].resistance) break;
 	}
 	
 	if (i >= table_count - 1) {
-		temperature_val = c_thermistor_info_table[table_count - 1].temperature; // last value
+		temperature_val = c_thermistor_info_table[table_count - 1].temperature;
 	}
-	// resolving case when value lies between two resistances 
 	else if (temp_resistance - c_thermistor_info_table[i + 1].resistance > (c_thermistor_info_table[i].resistance - c_thermistor_info_table[i + 1].resistance) / 2) {
 		temperature_val = c_thermistor_info_table[i].temperature;
 	}
 	else {
 		temperature_val = c_thermistor_info_table[i + 1].temperature;
 	}
-//	NRF_LOG_INFO("i = %d, temperature_val = %d\n", i, temperature_val);
+	NRF_LOG_INFO("i = %d, temperature_val = %d\n", i, temperature_val);
+	
+	temperature_val = temperature_val*9/5 + 32;
 	
 	return temperature_val;
 }
