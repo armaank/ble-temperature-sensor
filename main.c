@@ -618,13 +618,13 @@ void user_timer_handler(void * p_context)
 	m_timer_counter++;
 		
 	if (m_timer_counter == 1) {
-		strcpy(gDebug_str, "Wait a minute...");
-		BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
-		NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
+		//strcpy(gDebug_str, "Wait a minute...");
+		//BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
+		//NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
 
-		sprintf(gDebug_str, "Temp Calc(%ds)...", m_timer_counter);
-		BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
-		NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
+		//sprintf(gDebug_str, "Temp Calc(%ds)...", m_timer_counter);
+		//BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
+		//NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
 		
 		if (m_task_state == TASK_STATE_IDLE) {
 			m_task_state = TASK_STATE_TEMP_CALC;
@@ -632,9 +632,9 @@ void user_timer_handler(void * p_context)
 		app_timer_start(m_user_timer_id, APP_TIMER_TICKS(1000, APP_TIMER_PRESCALER), NULL);
 	}
 	else if (m_timer_counter < 60) {
-		sprintf(gDebug_str, "Temp Calc(%ds)...", m_timer_counter);
-		BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
-		NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
+		//sprintf(gDebug_str, "Temp Calc(%ds)...", m_timer_counter);
+		//BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
+		//NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
 		if (m_task_state == TASK_STATE_IDLE) {
 			m_task_state = TASK_STATE_TEMP_CALC;
 		}
@@ -642,7 +642,7 @@ void user_timer_handler(void * p_context)
 	}
 	else {
 		if (m_task_state == TASK_STATE_IDLE) {
-			NRF_LOG_INFO("Temp Sending...\n");
+			//NRF_LOG_INFO("Temp Sending...\n");
 			m_task_state = TASK_STATE_TEMP_SEND;
 		}
 	}
@@ -711,13 +711,13 @@ static void Main_Proc(void)
 				m_average_temp += Thermistor_GetValue();
 				m_average_temp /= m_timer_counter;
 			
-				sprintf(gDebug_str, "Temp = %d(degree)", m_average_temp);
+				sprintf(gDebug_str, "Temp = %d(*F)", m_average_temp);
 				NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
 				BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
 
-				strcpy(gDebug_str, "Disconnected.");
-				NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
-				BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
+				//strcpy(gDebug_str, "Disconnected.");
+				//NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
+				//BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
 			
 				m_timer_counter = 0;
 				m_average_temp 	= 0;
