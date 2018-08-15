@@ -24,9 +24,20 @@ BLE_CHARACTERISTIC_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 now = datetime.datetime.now()
 
 # converts thermistor values into temperatures
-def conv_val(res):
+def conv_val(adc_val):
+	# convert thermistor adc value to resistance
+	res = 10000*adc_val / (1023 - adc_val)
+	# convert resistance into temperature via steinhart
+	temp = res / 10000
+	temp = math.log(temp)
+	temp /= 3950 	
+	temp += 1.0 / (25+273.15)
+	temp = 1.0 / temp
+	temp -= 273.15
+	# convert celsius to farenheiht (check spelling!)
+	temp = temp*1.8 + 32
 	
-	
+	return temp	
 
 def write_temp(temp):
 	with open("/home/pi/temp_log.csv", "a") as csvlog:
@@ -39,9 +50,10 @@ class MyDelegate(btle.DefaultDelegate):
 
         def handleNotification(self, cHandle, data):
                 data = bytearray(data)
-		fout.write(data)
+		temperature = conv_val(data)
+		fout.write(temperature)
 		fout.write("\n")
-		write_temp(data)  
+		write_temp(temperature)  
 
 for x in range(0,len(device_addr)):
 	
