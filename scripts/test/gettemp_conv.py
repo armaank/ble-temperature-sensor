@@ -41,7 +41,7 @@ def conv_val(adc_val):
 
 def write_temp(temp):
 	with open("/home/pi/temp_log.csv", "a") as csvlog:
-		csvlog.write("{0},{1}\n".format(now.strftime("%m-%d-%Y %H:%M"), str(temp))
+		csvlog.write("{0},{1}\n".format(now.strftime("%m-%d-%Y %H:%M"), str(temp)))
 
 
 class MyDelegate(btle.DefaultDelegate):
