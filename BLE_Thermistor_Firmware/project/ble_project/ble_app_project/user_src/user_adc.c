@@ -137,7 +137,7 @@ int16_t Thermistor_GetValue(void)	//degree = -40 ~ 200
 	
 	temperature_val = temperature_val*9/5 + 32;
 	
-	return temperature_val;
+	return adc_val;
 }
 
 
