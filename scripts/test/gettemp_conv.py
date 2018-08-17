@@ -21,30 +21,12 @@ device_addr = [
 BLE_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
 BLE_CHARACTERISTIC_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 
-now = datetime.datetime.now()
-
-# converts thermistor values into temperatures
-#def conv_val(adc_val):
-	# convert thermistor adc value to resistance
-	# res = 10000*adc_val / (1023 - adc_val)
-	# convert resistance into temperature via steinhart
-	#temp = adc_val / 10000
-	#temp = math.log(temp)
-	#temp /= 3950 	
-	#temp += 1.0 / (25+273.15)
-	#temp = 1.0 / temp
-	#temp -= 273.15
-	# convert celsius to farenheiht (check spelling!)
-	#temp = temp*1.8 + 32
-	#return temp	
+now = datetime.datetime.now()	
 
 def conv_val(val):
-	#print('Hello', person)
-
+	# convert thermistor adc value to resistance
 	R = 10000*val / (1023 - val)
-
-	#print('resistance: ',R) 
-
+	# convert resistance into temperature via steinhart
 	temp = val / 10000
 	#temp = math.log(temp)
 	temp /= 3950
@@ -57,43 +39,17 @@ def conv_val(val):
 
 #def write_temp(temp):
 #	with open("/home/pi/temp_log.csv", "a") as csvlog:
-#		csvlog.write("{0},{1}\n".format(now.strftime("%m-%d-%Y %H:%M"), str(temp)))
-
-
-#class MyDelegate(btle.DefaultDelegate):
- #       def __init__(self):
-  #              btle.DefaultDelegate.__init__(self)
-#
- #       def handleNotification(self, cHandle, data):
-  #          	data = bytearray(data)
-				#temperature = conv_val(data)
-	#		fout.write(temperature)
-	#		fout.write("\n")
-				#write_temp(temperature)  
+#		csvlog.write("{0},{1}\n".format(now.strftime("%m-%d-%Y %H:%M"), str(temp)))  
 
 class MyDelegate(btle.DefaultDelegate):
 	def __init__(self):
 		btle.DefaultDelegate.__init__(self)
 
 	def handleNotification(self, cHandle, data):
-		#data = bytearray(data)
-		#temperature = conv_val(data)
-		#temp = data / 10000
-		#temp = math.log(temp)
-		#temp /= 3950
-		#temp += 1.0 / (25+273.15)
-		#temp = 1.0/temp
-		#temp -= 273.15
-		#temp = temp*1.8 + 32
-		#data = float(data)
-		#textout.write(data)
-		#textout.write("\n")
 		data = int(data)
 		data = conv_val(data)
-		print(data)
-		textout.write("test: %f " %data)
-		textout.write("\n")
-
+		textout.write("temperature: %f\n" %data)
+		
 for x in range(0,len(device_addr)):
 	
 	os.system("sudo hciconfig hci0 down")
