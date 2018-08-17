@@ -711,7 +711,7 @@ static void Main_Proc(void)
 				m_average_temp += Thermistor_GetValue();
 				m_average_temp /= m_timer_counter;
 			
-				sprintf(gDebug_str, "Temp = %d(*F)", m_average_temp);
+				sprintf(gDebug_str, "%d", m_average_temp);
 				NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
 				BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
 

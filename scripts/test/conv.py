@@ -1,18 +1,23 @@
+from __future__ import division
 import math
 
-R = int(input('Enter Thermistor Value: '))
-#print('Hello', person)
+def conv_val(val):
+	#print('Hello', person)
 
-#R = 10000*val / (1023 - val)
+	R = 10000*val / (1023 - val)
 
-#print('resistance: ',R) 
+	#print('resistance: ',R) 
 
-temp = R / 10000
-temp = math.log(temp)
-temp /= 3950
-temp += 1.0 / (25+273.15)
-temp = 1.0/temp
-temp -= 273.15
+	temp = val / 10000
+	#temp = math.log(temp)
+	temp /= 3950
+	temp += 1.0 / (25+273.15)
+	temp = 1.0/temp
+	temp -= 273.15
+	temp = temp*1.8 + 32
 
+	return temp
 
-print('temperatures: ', temp)
+R = int(input('Enter Thermistor Value:'))
+out = conv_val(R)
+print('temperatures: ',out)
