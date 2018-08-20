@@ -37,9 +37,10 @@ def conv_val(val):
 
 	return temp
 
-#def write_temp(temp):
-#	with open("/home/pi/temp_log.csv", "a") as csvlog:
-#		csvlog.write("{0},{1}\n".format(now.strftime("%m-%d-%Y %H:%M"), str(temp)))  
+def write_csv(temp, name):
+	with open("./temp2.csv", "a") as log:
+		log.write("{0},{1},{2}\n".name, format(strftime("%Y-%m-%d %H:%M:%S"),str(temp),name ))
+
 
 class MyDelegate(btle.DefaultDelegate):
 	def __init__(self):
@@ -49,6 +50,7 @@ class MyDelegate(btle.DefaultDelegate):
 		data = int(data)
 		data = conv_val(data)
 		textout.write("temperature: %f\n" %data)
+		write_csv(data, device_addr[x])
 		
 for x in range(0,len(device_addr)):
 	
@@ -61,8 +63,6 @@ for x in range(0,len(device_addr)):
 	textout = open("/home/pi/temp_log.txt", "a")
 	textout.write("\nconnecting to %s at " % device_addr[x])
 	textout.write(now.strftime("%m-%d-%Y %H:%M")+"\n")
-
-	#csvout = open("/home/pi/temp_log.csv", "a")
 	
 	try:
 		dev = btle.Peripheral(device_addr[x], "random")
