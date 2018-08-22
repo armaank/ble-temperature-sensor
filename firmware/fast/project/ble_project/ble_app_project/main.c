@@ -650,11 +650,13 @@ void user_timer_handler(void * p_context)
 
 void user_timer_handler_fast(void * p_context)
 {
-    UNUSED_PARAMETER(p_context);
-    
-    if(m_task_state == TASK_STATE_IDLE){
-        m_task_state = TASK_STATE_TEMP_SEND;
-    }
+	UNUSED_PARAMETER(p_context);
+	
+	if(m_task_state == TASK_STATE_IDLE)
+	{
+			m_task_state = TASK_STATE_TEMP_SEND;
+	}
+	
 }
 
 static void Main_Init(void)
@@ -733,7 +735,7 @@ static void Main_Proc(void)
 			
 				nrf_delay_ms(10);			
 			
-	            err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+	      err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
 				APP_ERROR_CHECK(err_code);
 			
 				m_task_state = TASK_STATE_IDLE;
@@ -746,46 +748,45 @@ static void Main_Proc(void)
 static void Main_Proc_Fast(void)
 {
     uint32_t err_code;
-    
-    NRF_LOG_INFO(" ******* BLE Thermistor Started! ******\n");
-    
+	
+	NRF_LOG_INFO(" ******* BLE Thermistor Started! ******\n");
+	
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(err_code);
-    
+	
     // Enter main loop.
     for (;;)
     {
-//      Debug_TaskState();
-        
-        switch (m_task_state)
-        {
-            case TASK_STATE_IDLE:
-                break;
-            case TASK_STATE_TEMP_SEND:
-                m_temp = Thermistor_GetValue();
-                            
-                sprintf(gDebug_str, "%d", m_temp);
-                NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
-                BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
+//		Debug_TaskState();
+		
+		switch (m_task_state)
+		{
+			case TASK_STATE_IDLE:
+				break;
+			case TASK_STATE_TEMP_SEND:
+				m_average_temp = Thermistor_GetValue();
+			
+				sprintf(gDebug_str, "%d", m_average_temp);
+				NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
+				BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
 
-                //strcpy(gDebug_str, "Disconnected.");
-                //NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
-                //BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
-            
-                m_timer_counter = 0;
-                m_temp  = 0;
-            
-                nrf_delay_ms(10);           
-            
-                err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-                APP_ERROR_CHECK(err_code);
-            
-                m_task_state = TASK_STATE_IDLE;
-                break;
-        }
-        power_manage();
+				//strcpy(gDebug_str, "Disconnected.");
+				//NRF_LOG_INFO("%s\n", (uint32_t)gDebug_str);
+				//BLE_WriteBuffer((uint8_t*)gDebug_str, strlen(gDebug_str));
+			
+				m_timer_counter = 0;
+				m_average_temp 	= 0;
+			
+				nrf_delay_ms(10);			
+			
+	      err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+				APP_ERROR_CHECK(err_code);
+			
+				m_task_state = TASK_STATE_IDLE;
+				break;
+		}
+		power_manage();
     }
-
 }
 
 /**@brief Application main function.
