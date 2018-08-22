@@ -38,9 +38,8 @@ def conv_val(val):
 	return temp
 
 def write_csv(temp, name):
-	with open("./temp2.csv", "a") as log:
-		log.write("{0},{1},{2}\n".name, format(strftime("%Y-%m-%d %H:%M:%S"),str(temp),name ))
-
+	with open("/home/pi/temp_log.csv", "a") as log:
+		log.write("{0},{1},{2},{3}\n".format(now.strftime("%m-%d-%Y"),now.strftime("%H:%M:%S"),name,str(temp)))
 
 class MyDelegate(btle.DefaultDelegate):
 	def __init__(self):
@@ -49,8 +48,8 @@ class MyDelegate(btle.DefaultDelegate):
 	def handleNotification(self, cHandle, data):
 		data = int(data)
 		data = conv_val(data)
+		write_csv(data,device_addr[x])
 		textout.write("temperature: %f\n" %data)
-		write_csv(data, device_addr[x])
 		
 for x in range(0,len(device_addr)):
 	
