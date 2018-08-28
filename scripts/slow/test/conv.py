@@ -4,17 +4,19 @@ import math
 def conv_val(val):
 	#print('Hello', person)
 
-	R = 10000*val / (1023 - val)
+	R = 1023 / val - 1
 
 	#print('resistance: ',R) 
+	R = 10000 / R
+	print('resistance: ',R)
 
-	temp = val / 10000
-	#temp = math.log(temp)
+	temp = R / 10000
+	temp = math.log(temp)
 	temp /= 3950
 	temp += 1.0 / (25+273.15)
 	temp = 1.0/temp
 	temp -= 273.15
-	temp = temp*1.8 + 32
+#	temp = temp*1.8 + 32
 
 	return temp
 

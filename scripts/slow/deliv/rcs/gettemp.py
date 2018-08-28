@@ -25,10 +25,11 @@ now = datetime.datetime.now()
 
 def conv_val(val):
 	# convert thermistor adc value to resistance
-	R = 10000*val / (1023 - val)
+	R = 1023 / val - 1 
+	R = 10000 / R
 	# convert resistance into temperature via steinhart
-	temp = val / 10000
-	#temp = math.log(temp)
+	temp = R / 10000
+	temp = math.log(temp)
 	temp /= 3950
 	temp += 1.0 / (25+273.15)
 	temp = 1.0/temp
