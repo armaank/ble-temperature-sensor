@@ -13,5 +13,5 @@ pip install schedule
 clear
 echo "starting now"
 # run scripts
-python3 ~/rcs/manage.py
+python ./rcs/manage.py
 

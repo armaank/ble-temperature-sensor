@@ -10,7 +10,7 @@ import datetime
 import schedule
 
 def run_script():
-	subprocess.call("python ~/rcs/gettemp.py", shell=True)
+	subprocess.call("python ./rcs/gettemp.py", shell=True)
 
 schedule.every(30).seconds.do(run_script)
 #scheulde.every().hour.do(run_script)
