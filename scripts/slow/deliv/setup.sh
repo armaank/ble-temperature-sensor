@@ -13,5 +13,5 @@ pip install schedule
 clear
 echo "starting now"
 # run scripts
-python ./rcs/manage.py
+python ./rcs_slow/manage_slow.py
 
